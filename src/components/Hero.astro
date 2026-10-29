@@ -1,6 +1,4 @@
----
----
-<div class="hero-container"></div>
+<div class='hero-container'></div>
 
 <script>
   import * as THREE from 'three';
@@ -28,11 +26,15 @@
 
   const uniforms = {
     iTime: { value: 0.0 },
-    iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    iResolution: {
+      value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+    },
     uFlightSpeed: { value: settings.flightSpeed },
     uAnimSpeed: { value: settings.animSpeed },
     uLightIntensity: { value: settings.lightIntensity },
-    uColorOffset: { value: new THREE.Vector3(settings.colorR, settings.colorG, settings.colorB) },
+    uColorOffset: {
+      value: new THREE.Vector3(settings.colorR, settings.colorG, settings.colorB)
+    },
     uGrainAmount: { value: settings.grainAmount }
   };
 
@@ -133,7 +135,8 @@
   const gui = new GUI({ title: 'Shader Settings' });
   gui.close();
 
-  gui.add(settings, 'dpr', 0.1, 4.0, 0.1)
+  gui
+    .add(settings, 'dpr', 0.1, 4.0, 0.1)
     .name('Device Pixel Ratio')
     .onChange((value: number) => {
       renderer.setPixelRatio(value);
@@ -144,7 +147,9 @@
   motionFolder.add(settings, 'animSpeed', -5.0, 5.0).name('Animation Speed');
 
   const visualFolder = gui.addFolder('Visual & Lighting');
-  visualFolder.add(settings, 'lightIntensity', 1000.0, 100000.0).name('Light Intensity');
+  visualFolder
+    .add(settings, 'lightIntensity', 1000.0, 100000.0)
+    .name('Light Intensity');
   visualFolder.add(settings, 'grainAmount', 0.0, 0.5).name('Noise Grain Amount');
 
   const colorsFolder = gui.addFolder('Color Palette Offsets');
@@ -166,7 +171,11 @@
     uniforms.uFlightSpeed.value = settings.flightSpeed;
     uniforms.uAnimSpeed.value = settings.animSpeed;
     uniforms.uLightIntensity.value = settings.lightIntensity;
-    uniforms.uColorOffset.value.set(settings.colorR, settings.colorG, settings.colorB);
+    uniforms.uColorOffset.value.set(
+      settings.colorR,
+      settings.colorG,
+      settings.colorB
+    );
     uniforms.uGrainAmount.value = settings.grainAmount;
 
     renderer.render(scene, camera);
